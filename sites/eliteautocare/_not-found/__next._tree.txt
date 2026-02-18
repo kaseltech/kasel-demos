@@ -1,0 +1,2 @@
+:HL["/eliteautocare/_next/static/chunks/bc9dd235686b1401.css","style"]
+0:{"buildId":"tBd5tcYI6EdX7RNs4_9By","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

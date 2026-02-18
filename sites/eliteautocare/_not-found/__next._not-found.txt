@@ -1,0 +1,4 @@
+1:"$Sreact.fragment"
+2:I[39756,["/eliteautocare/_next/static/chunks/a709716e8890f3f0.js","/eliteautocare/_next/static/chunks/bffa2c1a07bef1db.js","/eliteautocare/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+3:I[37457,["/eliteautocare/_next/static/chunks/a709716e8890f3f0.js","/eliteautocare/_next/static/chunks/bffa2c1a07bef1db.js","/eliteautocare/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+0:{"buildId":"tBd5tcYI6EdX7RNs4_9By","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
