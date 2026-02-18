@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KaselTech Demos</title>
+  <title>Client Website Demos | KaselTech</title>
+  <meta name="description" content="Browse demo websites built by KaselTech for local businesses. Each demo showcases custom design, responsive layouts, and modern web development.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://demo.kasel.tech/">
+  <meta property="og:title" content="Client Website Demos | KaselTech">
+  <meta property="og:description" content="Browse demo websites built by KaselTech for local businesses.">
+  <meta property="og:url" content="https://demo.kasel.tech/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Client Website Demos | KaselTech">
+  <meta name="twitter:description" content="Browse demo websites built by KaselTech for local businesses.">
+  <link rel="icon" type="image/png" href="/eliteautocare/favicon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -12,38 +23,120 @@
       color: #fafafa;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; }
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 0;
+      background: #3e2dbe;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      z-index: 100;
+      font-size: 0.875rem;
+    }
+    .skip-nav:focus { top: 0; }
+    header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    header nav {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-weight: 700; font-size: 1.1rem; }
+    .logo span { color: #3e2dbe; }
+    header a.ext { color: #a3a3a3; font-size: 0.875rem; transition: color 0.2s; }
+    header a.ext:hover { color: #fafafa; }
+    main {
+      flex: 1;
+      display: flex;
       align-items: center;
       justify-content: center;
+      padding: 3rem 2rem;
     }
-    .container { max-width: 640px; padding: 2rem; text-align: center; }
+    .container { max-width: 720px; width: 100%; }
     h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .subtitle { color: #a3a3a3; margin-bottom: 2.5rem; }
+    .subtitle { color: #a3a3a3; margin-bottom: 2.5rem; font-size: 1.05rem; line-height: 1.6; }
     .demos { display: flex; flex-direction: column; gap: 1rem; }
-    a {
+    .demo-card {
       display: block;
-      padding: 1rem 1.5rem;
+      padding: 1.25rem 1.5rem;
       background: #1a1a1a;
       border: 1px solid #2a2a2a;
       border-radius: 0.75rem;
-      color: #fafafa;
-      text-decoration: none;
       transition: all 0.2s;
     }
-    a:hover { background: #222; border-color: #3e2dbe; }
+    .demo-card:hover { background: #222; border-color: #3e2dbe; transform: translateY(-1px); }
+    .demo-card:focus-visible { outline: 2px solid #3e2dbe; outline-offset: 2px; }
     .site-name { font-weight: 600; font-size: 1.1rem; }
-    .site-desc { color: #a3a3a3; font-size: 0.875rem; margin-top: 0.25rem; }
+    .site-meta { display: flex; gap: 1rem; margin-top: 0.35rem; flex-wrap: wrap; }
+    .site-desc { color: #a3a3a3; font-size: 0.875rem; }
+    .site-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #3e2dbe;
+      background: rgba(62, 45, 190, 0.1);
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid #1a1a1a;
+      text-align: center;
+    }
+    .copyright { color: #525252; font-size: 0.8rem; }
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      main { padding: 2rem 1rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>KaselTech Demos</h1>
-    <p class="subtitle">Client website demos</p>
-    <div class="demos">
-      <a href="/eliteautocare/">
-        <div class="site-name">Elite Auto Care SA</div>
-        <div class="site-desc">Auto repair shop in San Antonio, TX</div>
-      </a>
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <header role="banner">
+    <nav aria-label="Main navigation">
+      <div class="logo">Kasel<span>Tech</span></div>
+      <a href="https://kasel.tech" class="ext" aria-label="Visit KaselTech main site">kasel.tech</a>
+    </nav>
+  </header>
+
+  <main id="main-content" role="main">
+    <div class="container">
+      <h1>Client Website Demos</h1>
+      <p class="subtitle">
+        Preview websites built by KaselTech for local businesses. Each demo showcases responsive design,
+        fast performance, and modern web standards. These are fully functional previews of sites ready
+        to go live for real businesses.
+      </p>
+
+      <h2 id="demo-list" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:#525252; margin-bottom:1rem;">Available Demos</h2>
+
+      <div class="demos" role="list" aria-labelledby="demo-list">
+        <a href="/eliteautocare/" class="demo-card" role="listitem">
+          <div class="site-name">Elite Auto Care SA</div>
+          <div class="site-meta">
+            <span class="site-desc">Auto repair shop in San Antonio, TX &mdash; ASE certified, military owned, full-service auto care</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <span class="site-tag">Auto Repair</span>
+            <span class="site-tag">San Antonio</span>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p class="copyright">&copy; 2026 KaselTech. All rights reserved. &middot; <a href="https://kasel.tech" style="color:#525252;">kasel.tech</a></p>
+  </footer>
 </body>
 </html>
