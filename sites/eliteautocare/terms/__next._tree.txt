@@ -1,4 +1,4 @@
-:HL["/eliteautocare/_next/static/chunks/ab79bf04d2af70a5.css","style"]
+:HL["/eliteautocare/_next/static/chunks/7d4057091a2e4f47.css","style"]
 :HL["/eliteautocare/_next/static/media/0c8f209abc35ee02-s.p.a4b9a15b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/eliteautocare/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"buildId":"fey6h4NHYjJKyfyfg-Jns","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"terms","paramType":null,"paramKey":"terms","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"Bm5jCmsK75KdsagzG3AXr","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"terms","paramType":null,"paramKey":"terms","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
