@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /private/
 
-Sitemap: https://eliteautocaresatx.com/sitemap.xml
+Sitemap: https://demo.kasel.tech/eliteautocare/sitemap.xml
