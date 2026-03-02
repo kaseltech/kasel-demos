@@ -1,5 +1,5 @@
-:HL["/thedinkdenli/_next/static/chunks/f4c9802b7ba73a10.css","style"]
+:HL["/thedinkdenli/_next/static/chunks/aec95e0e6944a7eb.css","style"]
 :HL["/thedinkdenli/_next/static/media/2a65768255d6b625-s.p.d19752fb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/thedinkdenli/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/thedinkdenli/images/logo-horizontal-green.png","image"]
-0:{"buildId":"CQNS6m_UN7YvS_GJLvNd_","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"courts","paramType":null,"paramKey":"courts","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"TsSBxkgfkrUqwVtwaLe1M","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"courts","paramType":null,"paramKey":"courts","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
