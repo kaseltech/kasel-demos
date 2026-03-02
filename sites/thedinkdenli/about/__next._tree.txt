@@ -1,4 +1,5 @@
-:HL["/thedinkdenli/_next/static/chunks/d3a1b1795e21a940.css","style"]
+:HL["/thedinkdenli/_next/static/chunks/417cdd5831eb4528.css","style"]
 :HL["/thedinkdenli/_next/static/media/0c8f209abc35ee02-s.p.a4b9a15b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/thedinkdenli/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"buildId":"x-dKdIMejEwb71hc6gOaQ","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"about","paramType":null,"paramKey":"about","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+:HL["/images/logo-horizontal-green.jpg","image"]
+0:{"buildId":"4yieSNfwWsFhaGLhNG-Rb","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"about","paramType":null,"paramKey":"about","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
