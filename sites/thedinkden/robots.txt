@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://demo.kasel.tech/thedinkden/sitemap.xml
