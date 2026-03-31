@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Shopping & Reset Plan</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0f1117;
+    color: #e0e0e0;
+    line-height: 1.5;
+    padding: 16px;
+    padding-bottom: 80px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
+  .subtitle { color: #666; font-size: 0.8rem; margin-bottom: 20px; }
+  .progress-bar {
+    background: #1a1a2e;
+    border-radius: 8px;
+    height: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, #7c3aed, #4ade80);
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.3s ease;
+  }
+  .progress-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #a78bfa;
+    margin-bottom: 16px;
+  }
+  .tab-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab {
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    background: #1a1a2e;
+    color: #a0a0a0;
+    border: 1px solid #2a2a4a;
+    transition: all 0.2s;
+  }
+  .tab.active {
+    background: #7c3aed;
+    color: #fff;
+    border-color: #7c3aed;
+  }
+  .tab .count {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-left: 4px;
+  }
+  .section { display: none; }
+  .section.active { display: block; }
+  .store-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    margin-top: 8px;
+    border-bottom: 2px solid #7c3aed;
+    margin-bottom: 8px;
+  }
+  .store-header h2 {
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  .store-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .badge-costco { background: #1e3a5f; color: #60a5fa; }
+  .badge-sierra { background: #3b2f1e; color: #fbbf24; }
+  .badge-amazon { background: #2f1e1e; color: #f87171; }
+  .badge-other { background: #1e3b2f; color: #4ade80; }
+  .category {
+    color: #a78bfa;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    padding-left: 4px;
+  }
+  .item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+    gap: 10px;
+  }
+  .item:active { background: #1a1a2e; }
+  .item.checked { opacity: 0.4; }
+  .item.checked .item-name { text-decoration: line-through; }
+  .checkbox {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border: 2px solid #4a4a6a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.2s;
+  }
+  .item.checked .checkbox {
+    background: #4ade80;
+    border-color: #4ade80;
+  }
+  .checkbox::after {
+    content: '';
+    display: none;
+    width: 6px;
+    height: 10px;
+    border: solid #0f1117;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+  }
+  .item.checked .checkbox::after { display: block; }
+  .item-content { flex: 1; }
+  .item-name { font-size: 0.95rem; color: #e0e0e0; }
+  .item-detail { font-size: 0.75rem; color: #666; margin-top: 2px; }
+  .item-price {
+    font-size: 0.8rem;
+    color: #4ade80;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .meal-plan {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .meal-plan h3 {
+    color: #a78bfa;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .meal {
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a4a;
+  }
+  .meal:last-child { border-bottom: none; }
+  .meal-label {
+    color: #4ade80;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .meal-desc { font-size: 0.9rem; margin-top: 2px; }
+
+  .rule-card {
+    background: #1a1a2e;
+    border-left: 3px solid #ef4444;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .rule-card h4 { color: #ef4444; font-size: 0.85rem; margin-bottom: 6px; }
+  .rule-card ul { padding-left: 16px; font-size: 0.85rem; }
+  .rule-card li { margin-bottom: 4px; }
+
+  .supplement-card {
+    background: #1a1a2e;
+    border-left: 3px solid #4ade80;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .supplement-card h4 { color: #4ade80; font-size: 0.85rem; margin-bottom: 6px; }
+
+  .reset-btn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: #2a2a4a;
+    color: #666;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>Shopping & 2-Week Reset</h1>
+<p class="subtitle">March 30, 2026 — Costco + Sierra + Amazon</p>
+
+<div class="progress-text" id="progressText">0 / 0 items</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showSection('costco')">Costco</div>
+  <div class="tab" onclick="showSection('sierra')">Sierra</div>
+  <div class="tab" onclick="showSection('amazon')">Amazon</div>
+  <div class="tab" onclick="showSection('plan')">Diet Plan</div>
+  <div class="tab" onclick="showSection('rules')">Rules</div>
+</div>
+
+<!-- COSTCO SECTION -->
+<div class="section active" id="sec-costco">
+  <div class="store-header">
+    <h2>Costco</h2>
+    <span class="store-badge badge-costco">~$150-200</span>
+  </div>
+
+  <div class="category">Protein</div>
+  <div class="item" data-id="c1" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Eggs (5 dozen)</div>
+      <div class="item-detail">Staple — 3-4 eggs per breakfast</div>
+    </div>
+    <div class="item-price">~$12</div>
+  </div>
+  <div class="item" data-id="c2" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Chicken thighs or breasts (bulk)</div>
+      <div class="item-detail">Main protein — lunch & dinner</div>
+    </div>
+  </div>
+  <div class="item" data-id="c3" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Ground beef or turkey (85/15)</div>
+      <div class="item-detail">Variety protein</div>
+    </div>
+  </div>
+  <div class="item" data-id="c4" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Kirkland frozen wild salmon fillets</div>
+      <div class="item-detail">Good quality, half the price of fresh</div>
+    </div>
+  </div>
+  <div class="item" data-id="c5" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Fage Greek yogurt (big tub, plain full fat)</div>
+      <div class="item-detail">Daily snack — with walnuts</div>
+    </div>
+  </div>
+
+  <div class="category">Fermented Foods (REFRIGERATED section)</div>
+  <div class="item" data-id="c6" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Sauerkraut (raw/unpasteurized)</div>
+      <div class="item-detail">MUST be refrigerated, not shelf-stable. Eat with every meal.</div>
+    </div>
+  </div>
+  <div class="item" data-id="c7" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Kimchi</div>
+      <div class="item-detail">Korean fermented cabbage — refrigerated section</div>
+    </div>
+  </div>
+  <div class="item" data-id="c8" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Kefir (plain unsweetened)</div>
+      <div class="item-detail">If they have it — fermented milk drink</div>
+    </div>
+  </div>
+
+  <div class="category">Produce</div>
+  <div class="item" data-id="c9" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Avocados (bag of 5-6)</div>
+    </div>
+    <div class="item-price">~$5</div>
+  </div>
+  <div class="item" data-id="c10" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Spinach (big tub)</div>
+    </div>
+  </div>
+  <div class="item" data-id="c11" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Broccoli florets (frozen bag)</div>
+      <div class="item-detail">Frozen is fine, cheaper, no waste</div>
+    </div>
+  </div>
+  <div class="item" data-id="c12" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Cauliflower (frozen bag)</div>
+    </div>
+  </div>
+  <div class="item" data-id="c13" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Asparagus</div>
+    </div>
+  </div>
+  <div class="item" data-id="c14" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Onions</div>
+    </div>
+  </div>
+  <div class="item" data-id="c15" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Garlic</div>
+    </div>
+  </div>
+
+  <div class="category">Fats & Pantry</div>
+  <div class="item" data-id="c16" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Kerrygold butter</div>
+      <div class="item-detail">Grass-fed, cook eggs in this</div>
+    </div>
+  </div>
+  <div class="item" data-id="c17" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Kirkland extra virgin olive oil</div>
+      <div class="item-detail">Legit quality, half the price</div>
+    </div>
+  </div>
+  <div class="item" data-id="c18" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Walnuts or mixed nuts (big bag)</div>
+      <div class="item-detail">Snack with yogurt — small handfuls only</div>
+    </div>
+  </div>
+
+  <div class="category">Other</div>
+  <div class="item" data-id="c19" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Kirkland merino wool athletic socks</div>
+      <div class="item-detail">~$15/6-pack — good enough to start walking</div>
+    </div>
+  </div>
+</div>
+
+<!-- SIERRA SECTION -->
+<div class="section" id="sec-sierra">
+  <div class="store-header">
+    <h2>Sierra Trading Post</h2>
+    <span class="store-badge badge-sierra">Workout Clothes</span>
+  </div>
+
+  <div class="category">Shirts — look for loose/oversized, dark colors</div>
+  <div class="item" data-id="s1" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">2-3 loose performance tees (2XL/3XL/3XLT)</div>
+      <div class="item-detail">UA Tech 2.0, Nike Dri-FIT, or similar. Dark colors. NOT fitted/slim.</div>
+    </div>
+  </div>
+
+  <div class="category">Shorts</div>
+  <div class="item" data-id="s2" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">2-3 mesh athletic shorts (2XL/3XL)</div>
+      <div class="item-detail">UA Tech Mesh, Champion, Russell. Loose fit, 9-10" inseam.</div>
+    </div>
+  </div>
+
+  <div class="category">If they have them</div>
+  <div class="item" data-id="s3" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">LMNT electrolyte packets</div>
+      <div class="item-detail">For the carb cut — you'll flush electrolytes</div>
+    </div>
+  </div>
+</div>
+
+<!-- AMAZON SECTION -->
+<div class="section" id="sec-amazon">
+  <div class="store-header">
+    <h2>Amazon (order today)</h2>
+    <span class="store-badge badge-amazon">Supplements & Gear</span>
+  </div>
+
+  <div class="category">Already Ordered</div>
+  <div class="item checked" data-id="a0" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Brooks Adrenaline GTS 25 (12.5 Wide)</div>
+      <div class="item-detail">Arrives Friday</div>
+    </div>
+  </div>
+
+  <div class="category">Underwear</div>
+  <div class="item" data-id="a1" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">David Archy Bamboo Boxer Briefs 7-pack</div>
+      <div class="item-detail">Breathable, cooling, support pouch</div>
+    </div>
+    <div class="item-price">$45</div>
+  </div>
+
+  <div class="category">Socks (test 1 pair first)</div>
+  <div class="item" data-id="a2" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Feetures Elite Max Cushion No Show 3-pack</div>
+      <div class="item-detail">Test with Adrenalines Friday, return if too tight</div>
+    </div>
+    <div class="item-price">$54</div>
+  </div>
+
+  <div class="category">Supplements</div>
+  <div class="item" data-id="a3" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Probiotic — 50+ billion CFU</div>
+      <div class="item-detail">Garden of Life or Seed brand</div>
+    </div>
+  </div>
+  <div class="item" data-id="a4" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Psyllium husk powder</div>
+      <div class="item-detail">1 tbsp in water before bed — feeds good bacteria</div>
+    </div>
+  </div>
+  <div class="item" data-id="a5" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">Magnesium glycinate 400mg</div>
+      <div class="item-detail">Before bed — sleep, recovery, gut motility</div>
+    </div>
+  </div>
+  <div class="item" data-id="a6" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">LMNT electrolyte packets</div>
+      <div class="item-detail">If not found at Sierra/Costco</div>
+    </div>
+  </div>
+
+  <div class="category">Workout Clothes (backup if Sierra doesn't have size)</div>
+  <div class="item" data-id="a7" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">UA Tech 2.0 Loose Tee 3XLT (black)</div>
+      <div class="item-detail">Textured fabric won't cling when wet. Tall = no stomach showing.</div>
+    </div>
+    <div class="item-price">~$25</div>
+  </div>
+  <div class="item" data-id="a8" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="item-content">
+      <div class="item-name">UA Tech Mesh Shorts (black, 2XL/3XL)</div>
+      <div class="item-detail">Loose fit, 10" inseam, quick dry</div>
+    </div>
+    <div class="item-price">~$30</div>
+  </div>
+</div>
+
+<!-- DIET PLAN SECTION -->
+<div class="section" id="sec-plan">
+  <div class="store-header">
+    <h2>2-Week Gut Reset — Meal Plan</h2>
+    <span class="store-badge badge-other">Day 1 starts tonight</span>
+  </div>
+
+  <div class="meal-plan">
+    <h3>Daily Meal Template</h3>
+    <div class="meal">
+      <div class="meal-label">Breakfast</div>
+      <div class="meal-desc">3-4 eggs scrambled in butter + sauteed spinach + side of sauerkraut</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Lunch</div>
+      <div class="meal-desc">Large salad with grilled chicken, avocado, olive oil dressing + side of kimchi</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Snack</div>
+      <div class="meal-desc">Greek yogurt (plain, full fat) + handful of walnuts</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Dinner</div>
+      <div class="meal-desc">Protein (steak, salmon, chicken thighs) + roasted broccoli/cauliflower + sauerkraut</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Before Bed</div>
+      <div class="meal-desc">1 tbsp psyllium husk in water + magnesium glycinate 400mg</div>
+    </div>
+  </div>
+
+  <div class="meal-plan">
+    <h3>Daily Targets</h3>
+    <div class="meal">
+      <div class="meal-label">Calories</div>
+      <div class="meal-desc">1800-2200</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Protein</div>
+      <div class="meal-desc">180-200g minimum</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Water</div>
+      <div class="meal-desc">100oz+ per day</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Fermented Foods</div>
+      <div class="meal-desc">With every meal (sauerkraut, kimchi, kefir, yogurt)</div>
+    </div>
+  </div>
+
+  <div class="meal-plan">
+    <h3>Movement</h3>
+    <div class="meal">
+      <div class="meal-label">Week 1</div>
+      <div class="meal-desc">Walk 30 minutes every day. That's it.</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Week 2</div>
+      <div class="meal-desc">Walk 30-45 min daily + 3x light resistance (bodyweight squats, push-ups, dumbbell rows)</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">At 280lb</div>
+      <div class="meal-desc">Start CrossFit-style gym + walk/jog intervals</div>
+    </div>
+  </div>
+
+  <div class="meal-plan">
+    <h3>Expected Timeline</h3>
+    <div class="meal">
+      <div class="meal-label">Days 1-5</div>
+      <div class="meal-desc">Feel like crap (sugar withdrawal + gut bacteria die-off). Push through.</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Week 1</div>
+      <div class="meal-desc">8-12lb loss (mostly water). Energy improving.</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">Weeks 2-4</div>
+      <div class="meal-desc">2-3lb/week fat loss. Gut reset complete. Feel dramatically better.</div>
+    </div>
+    <div class="meal">
+      <div class="meal-label">By May 1</div>
+      <div class="meal-desc">Target: -20lb (280lb). Start gym.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES SECTION -->
+<div class="section" id="sec-rules">
+  <div class="store-header">
+    <h2>2-Week Rules</h2>
+    <span class="store-badge badge-amazon">Non-negotiable</span>
+  </div>
+
+  <div class="rule-card">
+    <h4>CUT COMPLETELY for 2 Weeks</h4>
+    <ul>
+      <li>Sugar — all of it. No sodas, candy, desserts, sweetened coffee</li>
+      <li>Processed food — fast food, frozen meals, chips, crackers</li>
+      <li>Bread / pasta / rice</li>
+      <li>Alcohol</li>
+      <li>Artificial sweeteners — they disrupt gut bacteria too</li>
+      <li>Seed oils (canola, soybean, vegetable oil) — cook with olive oil or butter</li>
+    </ul>
+  </div>
+
+  <div class="supplement-card">
+    <h4>Daily Supplements</h4>
+    <ul>
+      <li><strong>Probiotic</strong> — 50+ billion CFU, morning with food</li>
+      <li><strong>Psyllium husk</strong> — 1 tbsp in water, before bed</li>
+      <li><strong>Magnesium glycinate</strong> — 400mg, before bed</li>
+      <li><strong>Electrolytes (LMNT)</strong> — 1-2 packets/day, especially first week</li>
+      <li><strong>Water</strong> — 100oz minimum</li>
+    </ul>
+  </div>
+
+  <div class="rule-card">
+    <h4>Remember</h4>
+    <ul>
+      <li>Days 1-5 will suck — that's the sugar withdrawal + gut die-off. It passes.</li>
+      <li>Fermented food with EVERY meal — this is what resets your microbiome</li>
+      <li>Protein at every meal — 200g/day keeps you full and preserves muscle</li>
+      <li>Walk 30 min every day — non-negotiable, even if you feel tired</li>
+      <li>No cotton socks for walking — merino or synthetic only</li>
+      <li>Salt your food generously — you'll flush sodium cutting carbs</li>
+    </ul>
+  </div>
+</div>
+
+<button class="reset-btn" onclick="resetAll()">Reset All Checks</button>
+
+<script>
+  const STORAGE_KEY = 'shopping-list-20260330';
+
+  function getState() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch { return {}; }
+  }
+
+  function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function toggle(el) {
+    el.classList.toggle('checked');
+    const id = el.dataset.id;
+    const state = getState();
+    state[id] = el.classList.contains('checked');
+    saveState(state);
+    updateProgress();
+  }
+
+  function restoreState() {
+    const state = getState();
+    document.querySelectorAll('.item[data-id]').forEach(el => {
+      if (state[el.dataset.id]) {
+        el.classList.add('checked');
+      }
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.item[data-id]');
+    const checked = document.querySelectorAll('.item.checked[data-id]');
+    const pct = items.length ? (checked.length / items.length * 100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = checked.length + ' / ' + items.length + ' items';
+  }
+
+  function showSection(name) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sec-' + name).classList.add('active');
+    event.target.classList.add('active');
+    localStorage.setItem(STORAGE_KEY + '-tab', name);
+  }
+
+  function resetAll() {
+    if (confirm('Reset all checkboxes?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.item').forEach(el => el.classList.remove('checked'));
+      updateProgress();
+    }
+  }
+
+  // Restore state on load
+  restoreState();
+
+  // Restore last active tab
+  const lastTab = localStorage.getItem(STORAGE_KEY + '-tab');
+  if (lastTab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    const sec = document.getElementById('sec-' + lastTab);
+    if (sec) sec.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t => {
+      if (t.textContent.toLowerCase().includes(lastTab.substring(0, 4))) t.classList.add('active');
+    });
+  }
+
+  // Save scroll position
+  window.addEventListener('scroll', () => {
+    localStorage.setItem(STORAGE_KEY + '-scroll', window.scrollY);
+  });
+  const savedScroll = localStorage.getItem(STORAGE_KEY + '-scroll');
+  if (savedScroll) setTimeout(() => window.scrollTo(0, parseInt(savedScroll)), 100);
+</script>
+
+</body>
+</html>

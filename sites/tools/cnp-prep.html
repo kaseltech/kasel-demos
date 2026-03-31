@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C&P Exam Prep — March 30, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0f1117;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    border-bottom: 3px solid #7c3aed;
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
+  .appt-banner {
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    border: 1px solid #4c1d95;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .appt-banner .label {
+    color: #a78bfa;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .appt-banner .value {
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .appt-banner .full-width {
+    grid-column: 1 / -1;
+  }
+  .bring-list {
+    background: #1a1a2e;
+    border-left: 4px solid #f59e0b;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 30px;
+  }
+  .bring-list h3 {
+    color: #f59e0b;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  .bring-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  .bring-list li::before {
+    content: "☐ ";
+    color: #f59e0b;
+  }
+  .bring-list li {
+    margin-bottom: 4px;
+  }
+
+  .condition-card {
+    background: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .condition-header {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .condition-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .condition-code {
+    font-size: 0.8rem;
+    color: #a0a0a0;
+    background: #2a2a4a;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .condition-body {
+    padding: 0 20px 20px;
+  }
+
+  .evidence-box {
+    background: #12121f;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .evidence-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .evidence-strong h4 { color: #22c55e; }
+  .evidence-moderate h4 { color: #f59e0b; }
+  .evidence-weak h4 { color: #ef4444; }
+  .evidence-strong { border-left: 3px solid #22c55e; }
+  .evidence-moderate { border-left: 3px solid #f59e0b; }
+  .evidence-weak { border-left: 3px solid #ef4444; }
+
+  .record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4px 0;
+    border-bottom: 1px solid #1e1e35;
+    font-size: 0.9rem;
+  }
+  .record-item:last-child { border-bottom: none; }
+  .record-date {
+    color: #a78bfa;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+
+  .rating-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+  .rating-table th {
+    text-align: left;
+    color: #a78bfa;
+    padding: 8px 10px;
+    border-bottom: 2px solid #4c1d95;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .rating-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #1e1e35;
+    vertical-align: top;
+  }
+  .rating-table tr:last-child td { border-bottom: none; }
+  .rating-highlight {
+    background: #1e1b4b;
+    font-weight: 600;
+    color: #a78bfa;
+  }
+
+  .talking-points {
+    background: #12121f;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 12px;
+  }
+  .talking-points h4 {
+    color: #7c3aed;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .talking-points ul {
+    padding-left: 18px;
+  }
+  .talking-points li {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+  }
+  .talking-points li strong {
+    color: #c4b5fd;
+  }
+  .quote-block {
+    background: #1e1b4b;
+    border-left: 3px solid #7c3aed;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    color: #c4b5fd;
+    font-size: 0.9rem;
+  }
+
+  .nexus-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .nexus-direct { background: #14532d; color: #4ade80; }
+  .nexus-secondary { background: #422006; color: #fbbf24; }
+  .nexus-presumptive { background: #1e1b4b; color: #a78bfa; }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid #2a2a4a;
+    margin: 36px 0;
+  }
+
+  .tips-section {
+    background: linear-gradient(135deg, #1a2e1a, #1a1a2e);
+    border: 1px solid #166534;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 30px;
+  }
+  .tips-section h2 {
+    color: #4ade80;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+  .tips-section ol {
+    padding-left: 20px;
+  }
+  .tips-section li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+  }
+  .tips-section li strong {
+    color: #4ade80;
+  }
+
+  .estimate-section {
+    background: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 30px;
+  }
+  .estimate-section h2 {
+    color: #a78bfa;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .badge-green { background: #14532d; color: #4ade80; }
+  .badge-yellow { background: #422006; color: #fbbf24; }
+  .badge-red { background: #450a0a; color: #f87171; }
+  .badge-purple { background: #1e1b4b; color: #a78bfa; }
+
+  @media (max-width: 600px) {
+    .appt-banner { grid-template-columns: 1fr; }
+    body { padding: 12px; }
+    h1 { font-size: 1.4rem; }
+    .condition-name { font-size: 1.1rem; }
+  }
+
+  .print-note {
+    color: #666;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a4a;
+  }
+</style>
+</head>
+<body>
+
+<h1>C&P Exam Prep</h1>
+<p class="subtitle">Compensation & Pension Examination — Charles Kasel — March 30, 2026</p>
+
+<div class="appt-banner">
+  <div>
+    <div class="label">Date & Time</div>
+    <div class="value">March 30, 2026 @ 3:00 PM CT</div>
+  </div>
+  <div>
+    <div class="label">Arrive By</div>
+    <div class="value">2:45 PM (15 min early)</div>
+  </div>
+  <div>
+    <div class="label">Provider</div>
+    <div class="value">Yetunde Oladosu (SPC: NPR)</div>
+  </div>
+  <div>
+    <div class="label">Duration</div>
+    <div class="value">~60 minutes</div>
+  </div>
+  <div class="full-width">
+    <div class="label">Location</div>
+    <div class="value">Royal Suntomed Medical Group — 7434 Louis Pasteur Dr, Ste 309, San Antonio, TX 78229</div>
+  </div>
+  <div>
+    <div class="label">Contractor</div>
+    <div class="value">Leidos QTC Health Services</div>
+  </div>
+  <div>
+    <div class="label">Account #</div>
+    <div class="value">3820461.6.1</div>
+  </div>
+</div>
+
+<div class="bring-list">
+  <h3>Bring to the Exam</h3>
+  <ul>
+    <li>Valid photo ID (no copies made at clinic)</li>
+    <li>List of current medications</li>
+    <li>No firearms or weapons</li>
+    <li>No recording devices (photos, video, audio prohibited)</li>
+  </ul>
+</div>
+
+<!-- ==================== CONDITION 1: PES PLANUS ==================== -->
+<div class="condition-card">
+  <div class="condition-header" style="background: linear-gradient(90deg, #14532d 0%, #1a1a2e 100%);">
+    <div>
+      <span class="condition-name">1. Pes Planus (Flat Feet)</span>
+      <span class="nexus-tag nexus-direct">DIRECT SERVICE CONNECTION</span>
+    </div>
+    <span class="condition-code">DC 5276</span>
+  </div>
+  <div class="condition-body">
+
+    <div class="evidence-box evidence-strong">
+      <h4>Evidence Strength: STRONG</h4>
+      <div class="record-item">
+        <span>Flatfoot (ICD-9 734.) — Philadelphia PA VAMC</span>
+        <span class="record-date">Jun 7, 2011</span>
+      </div>
+      <div class="record-item">
+        <span>Flatfoot / Pes Planus on VA Problem List — continuous</span>
+        <span class="record-date">2011 – present</span>
+      </div>
+      <div class="record-item">
+        <span>Documented during active duty / shortly after separation (Aug 2010)</span>
+        <span class="record-date">within 1 year</span>
+      </div>
+    </div>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">VA Rating Criteria — DC 5276</h4>
+    <table class="rating-table">
+      <tr>
+        <th>Rating</th>
+        <th>Unilateral</th>
+        <th>Bilateral</th>
+        <th>Criteria</th>
+      </tr>
+      <tr>
+        <td>0%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Mild: symptoms relieved by built-up shoe or arch support</td>
+      </tr>
+      <tr>
+        <td>10%</td>
+        <td>—</td>
+        <td>10%</td>
+        <td>Moderate: weight-bearing line over or medial to great toe, inward bowing of achilles, pain on manipulation and use</td>
+      </tr>
+      <tr>
+        <td>20%</td>
+        <td>20%</td>
+        <td>30%</td>
+        <td>Severe: objective evidence of marked deformity (pronation, abduction), pain on manipulation and use, swelling on use, callosities</td>
+      </tr>
+      <tr class="rating-highlight">
+        <td>30%</td>
+        <td>30%</td>
+        <td>50%</td>
+        <td>Pronounced: marked pronation, extreme tenderness of plantar surfaces, severe spasm of tendo achillis on manipulation, <strong>NOT improved by orthopedic shoes or appliances</strong></td>
+      </tr>
+    </table>
+
+    <div class="talking-points">
+      <h4>What to Tell the Examiner</h4>
+      <ul>
+        <li><strong>Overpronation:</strong> "Every time I get fitted for running shoes, they tell me I severely overpronate. I'm always put in Brooks Beast — the max stability/motion control shoe."</li>
+        <li><strong>Orthotics failed:</strong> "I tried orthotics once and they didn't provide meaningful relief. I stopped using them." <em>(This is a key criterion for "pronounced" — the highest tier)</em></li>
+        <li><strong>Right foot nerve symptoms:</strong> "I get severe pain in the ball of my right foot where my 2nd, 3rd, and 4th toes go numb."</li>
+        <li><strong>Flare-ups:</strong> "Flare-ups last 1-2 days. I can't run, can't walk, can't do much. I have to lie down, ice it, and stretch my foot."</li>
+        <li><strong>Specialized shoes don't fix it:</strong> "Even with the Brooks Beast, I still get flare-ups. The shoes help but don't resolve the problem."</li>
+        <li><strong>Achilles tendon — sore, tender, swells:</strong> "When I run or stand for long periods, my Achilles gets sore, tender, and swells up. This happens on both feet." <em>(This is a key criterion for "pronounced" — severe spasm of tendo achillis)</em></li>
+        <li><strong>Feet swell and turn red:</strong> "My feet swell and turn red with activity — running, standing, walking." <em>(Visible inflammation = objective evidence the examiner can document)</em></li>
+        <li><strong>Bilateral:</strong> "Both feet are flat — not just one side. Both feet swell and turn red."</li>
+      </ul>
+      <div class="quote-block">
+        "My flat feet cause severe overpronation — every shoe store puts me in Brooks Beast, the max stability shoe. I tried orthotics and they didn't help. I get severe pain in the ball of my right foot where toes 2, 3, and 4 go numb. Flare-ups last 1-2 days where I can't walk and have to lie down and ice my foot. When I run or stand for long periods, my Achilles gets sore, tender, and swells. My feet turn red and swell with activity. This happens on both feet."
+      </div>
+    </div>
+
+    <div style="background: #1e1b4b; border-radius: 8px; padding: 14px 16px; margin: 14px 0;">
+      <h4 style="color: #4ade80; margin-bottom: 10px;">PRONOUNCED CRITERIA CHECKLIST — You Potentially Meet ALL 4</h4>
+      <table class="rating-table">
+        <tr>
+          <th>Criteria</th>
+          <th>Status</th>
+          <th>Your Evidence</th>
+        </tr>
+        <tr>
+          <td>Marked pronation</td>
+          <td><span class="badge badge-green">YES</span></td>
+          <td>Every shoe store confirms severe overpronation → Brooks Beast every time</td>
+        </tr>
+        <tr>
+          <td>Extreme tenderness of plantar surfaces</td>
+          <td><span class="badge badge-green">LIKELY</span></td>
+          <td>Severe pain in ball of right foot, toes 2-4 go numb (Morton's neuroma)</td>
+        </tr>
+        <tr>
+          <td>Severe spasm of tendo achillis on manipulation</td>
+          <td><span class="badge badge-green">YES</span></td>
+          <td>Achilles gets sore, tender, and swells with activity (running, standing). Feet turn red and swell.</td>
+        </tr>
+        <tr>
+          <td>Not improved by orthopedic shoes or appliances</td>
+          <td><span class="badge badge-green">YES</span></td>
+          <td>Tried orthotics — didn't help. Brooks Beast doesn't resolve symptoms. Still has flare-ups.</td>
+        </tr>
+      </table>
+      <p style="font-size: 0.9rem; color: #4ade80; margin-top: 10px; font-weight: 600;">If all 4 are documented at the exam → 50% bilateral (pronounced) is on the table.</p>
+    </div>
+
+    <div class="evidence-box evidence-moderate" style="margin-top: 14px;">
+      <h4>Potential Separate Rating: Peripheral Nerve (Morton's Neuroma)</h4>
+      <p style="font-size: 0.9rem; margin-top: 4px;">The toe numbness (2-4) could warrant a <strong>separate rating under DC 8525</strong> (posterior tibial nerve) for 10-20% in addition to the pes planus rating. Make sure the examiner documents the nerve symptoms — if they don't write it down, it didn't happen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONDITION 2: RIGHT ANKLE ==================== -->
+<div class="condition-card">
+  <div class="condition-header" style="background: linear-gradient(90deg, #422006 0%, #1a1a2e 100%);">
+    <div>
+      <span class="condition-name">2. Right Ankle</span>
+      <span class="nexus-tag nexus-secondary">SECONDARY / DIRECT</span>
+    </div>
+    <span class="condition-code">DC 5271</span>
+  </div>
+  <div class="condition-body">
+
+    <div class="evidence-box evidence-moderate">
+      <h4>Evidence Strength: MODERATE</h4>
+      <div class="record-item">
+        <span>No specific right ankle diagnosis on VA Problem List</span>
+        <span class="record-date">—</span>
+      </div>
+      <div class="record-item">
+        <span>Pes planus (documented) causes altered gait → ankle stress (biomechanical chain)</span>
+        <span class="record-date">secondary argument</span>
+      </div>
+      <div class="record-item">
+        <span>Right foot nerve symptoms (toes 2-4 numbness) may involve ankle structures</span>
+        <span class="record-date">ongoing</span>
+      </div>
+    </div>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">VA Rating Criteria — DC 5271 (Limited Motion of Ankle)</h4>
+    <table class="rating-table">
+      <tr>
+        <th>Rating</th>
+        <th>Criteria</th>
+        <th>Normal ROM</th>
+      </tr>
+      <tr>
+        <td>10%</td>
+        <td>Moderate limitation of motion</td>
+        <td rowspan="2" style="color: #a0a0a0;">Dorsiflexion: 0-20°<br>Plantar flexion: 0-45°</td>
+      </tr>
+      <tr>
+        <td>20%</td>
+        <td>Marked limitation of motion</td>
+      </tr>
+    </table>
+
+    <p style="font-size: 0.85rem; color: #a0a0a0; margin: 8px 0;">Higher ratings under DC 5270 (Ankylosis): 20-40% if the joint is fused/immobile.</p>
+
+    <div class="talking-points">
+      <h4>What to Tell the Examiner</h4>
+      <ul>
+        <li><strong>Don't push through pain during ROM testing.</strong> Stop at the point of pain.</li>
+        <li><strong>Flare-ups:</strong> How often, how bad, how long. Estimate your ROM during a flare — "During a flare I can barely flex my foot or push off."</li>
+        <li><strong>Instability:</strong> Does it give way? Roll easily? Do you wear a brace or wrap?</li>
+        <li><strong>Connect to pes planus:</strong> "My flat feet cause me to overpronate, which puts abnormal stress on my right ankle."</li>
+        <li><strong>Impact on function:</strong> Difficulty walking, running, standing for extended periods, going up/down stairs.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONDITION 3: LEFT KNEE ==================== -->
+<div class="condition-card">
+  <div class="condition-header" style="background: linear-gradient(90deg, #14532d 0%, #1a1a2e 100%);">
+    <div>
+      <span class="condition-name">3. Left Knee Pain</span>
+      <span class="nexus-tag nexus-direct">DIRECT SERVICE CONNECTION</span>
+    </div>
+    <span class="condition-code">DC 5260 / 5261 / 5257</span>
+  </div>
+  <div class="condition-body">
+
+    <div class="evidence-box evidence-strong">
+      <h4>Evidence Strength: STRONG</h4>
+      <div class="record-item">
+        <span>Knee pain (ICD-9 719.46) — Philadelphia PA VAMC</span>
+        <span class="record-date">Nov 23, 2010</span>
+      </div>
+      <div class="record-item">
+        <span>Knee: arthralgia (ICD-9 719.46) — Olin E. Teague Vet Center</span>
+        <span class="record-date">Mar 21, 2011</span>
+      </div>
+      <div class="record-item">
+        <span>Right knee already service-connected at 10% (patellofemoral pain syndrome)</span>
+        <span class="record-date">Nov 17, 2015</span>
+      </div>
+      <div class="record-item">
+        <span>Bilateral knee pain documented — same condition, left side not yet rated</span>
+        <span class="record-date">2010 – present</span>
+      </div>
+    </div>
+
+    <p style="font-size: 0.85rem; color: #22c55e; margin: 8px 0; font-weight: 600;">Note: Your right knee is already rated 10%. The knee pain entries in your records use code 719.46 which is <em>unspecified</em> knee — covering bilateral. Strong argument for left knee service connection.</p>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">VA Rating Criteria</h4>
+    <table class="rating-table">
+      <tr>
+        <th>DC</th>
+        <th>Rating</th>
+        <th>Criteria</th>
+      </tr>
+      <tr>
+        <td>5260</td>
+        <td>10%</td>
+        <td>Flexion limited to 45°</td>
+      </tr>
+      <tr>
+        <td>5260</td>
+        <td>20%</td>
+        <td>Flexion limited to 30°</td>
+      </tr>
+      <tr>
+        <td>5261</td>
+        <td>10%</td>
+        <td>Extension limited to 10°</td>
+      </tr>
+      <tr>
+        <td>5261</td>
+        <td>20%</td>
+        <td>Extension limited to 15°</td>
+      </tr>
+      <tr>
+        <td>5257</td>
+        <td>10%</td>
+        <td>Slight recurrent subluxation or lateral instability</td>
+      </tr>
+      <tr>
+        <td>5257</td>
+        <td>20%</td>
+        <td>Moderate recurrent subluxation or lateral instability</td>
+      </tr>
+    </table>
+    <p style="font-size: 0.85rem; color: #a0a0a0; margin: 4px 0;">Normal ROM: Flexion 0-140°, Extension 0°. Instability and ROM limitation can be rated <em>separately</em>.</p>
+
+    <div class="talking-points">
+      <h4>What to Tell the Examiner</h4>
+      <ul>
+        <li><strong>Clarify it's the LEFT knee</strong> — separate from the already-rated right knee.</li>
+        <li><strong>Don't push through pain</strong> during ROM testing. Stop where it hurts.</li>
+        <li><strong>Repetitive use:</strong> Does it get worse with repeated bending? (They test 3+ reps)</li>
+        <li><strong>Flare-ups:</strong> Frequency, duration, and estimate ROM loss — "During a flare I can only bend to about [X] degrees."</li>
+        <li><strong>Instability:</strong> Does it buckle, give way, or feel loose? Do you wear a brace?</li>
+        <li><strong>Crepitus:</strong> Grinding, popping, catching?</li>
+        <li><strong>Functional impact:</strong> Stairs, kneeling, squatting, prolonged standing/walking.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONDITION 4: STOMACH / GERD ==================== -->
+<div class="condition-card">
+  <div class="condition-header" style="background: linear-gradient(90deg, #14532d 0%, #1a1a2e 100%);">
+    <div>
+      <span class="condition-name">4. Stomach Condition (Gastroenteritis)</span>
+      <span class="nexus-tag nexus-direct">DIRECT SERVICE CONNECTION</span>
+    </div>
+    <span class="condition-code">DC 7346 / 7319</span>
+  </div>
+  <div class="condition-body">
+
+    <div class="evidence-box evidence-strong">
+      <h4>Evidence Strength: STRONG</h4>
+      <div class="record-item">
+        <span>Gastroesophageal Reflux Disorder / GERD (ICD-9 530.81) — Philadelphia PA VAMC</span>
+        <span class="record-date">Nov 23, 2010</span>
+      </div>
+      <div class="record-item">
+        <span>GERD on VA Problem List — continuous since shortly after separation</span>
+        <span class="record-date">2010 – present</span>
+      </div>
+      <div class="record-item">
+        <span>Separation date: Aug 10, 2010 → GERD documented 3 months later</span>
+        <span class="record-date">strong temporal nexus</span>
+      </div>
+    </div>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">VA Rating Criteria — DC 7346 (Hiatal Hernia / GERD)</h4>
+    <table class="rating-table">
+      <tr>
+        <th>Rating</th>
+        <th>Criteria</th>
+      </tr>
+      <tr>
+        <td>10%</td>
+        <td>Two or more of the symptoms for 30% with less severity</td>
+      </tr>
+      <tr>
+        <td>30%</td>
+        <td>Persistently recurrent epigastric distress with dysphagia, pyrosis, and regurgitation, accompanied by substernal or arm or shoulder pain, productive of considerable impairment of health</td>
+      </tr>
+      <tr>
+        <td>60%</td>
+        <td>Symptoms of pain, vomiting, material weight loss and hematemesis or melena with moderate anemia; or other symptom combinations productive of severe impairment of health</td>
+      </tr>
+    </table>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">Alternative — DC 7319 (Irritable Colon Syndrome)</h4>
+    <table class="rating-table">
+      <tr>
+        <th>Rating</th>
+        <th>Criteria</th>
+      </tr>
+      <tr>
+        <td>0%</td>
+        <td>Mild: disturbances of bowel function with occasional episodes of abdominal distress</td>
+      </tr>
+      <tr>
+        <td>10%</td>
+        <td>Moderate: frequent episodes of bowel disturbance with abdominal distress</td>
+      </tr>
+      <tr>
+        <td>30%</td>
+        <td>Severe: diarrhea, or alternating diarrhea and constipation, with more or less constant abdominal distress</td>
+      </tr>
+    </table>
+
+    <div class="talking-points">
+      <h4>What to Tell the Examiner</h4>
+      <div class="quote-block">
+        "I have stomach pain, fullness, and heartburn almost every day. I take antacids daily — it's been like this since I got out of the military in 2010. The acid reflux comes back up into my throat regularly. I have to avoid spicy food, fried food, coffee, and acidic foods or it flares up badly. It disrupts my sleep — the reflux gets worse when I lie down and wakes me up at night. Sometimes I get pain behind my breastbone from the reflux. It's a constant thing I have to manage every single day."
+      </div>
+      <h4 style="color: #7c3aed; margin-top: 14px;">Key Symptoms Checklist — Mention Each One That Applies</h4>
+      <ul>
+        <li><strong>Epigastric distress (stomach pain/fullness):</strong> "Almost daily" — put a frequency on it</li>
+        <li><strong>Pyrosis (heartburn/burning):</strong> "I get heartburn regularly" — the VA term is pyrosis</li>
+        <li><strong>Regurgitation:</strong> "Acid and food come back up into my throat" — if this happens, say it</li>
+        <li><strong>Substernal pain:</strong> "I get pain behind my breastbone from the reflux" — <em>this is a specific trigger for the 30% rating</em></li>
+        <li><strong>Sleep disruption:</strong> "It wakes me up at night — reflux gets worse lying down"</li>
+        <li><strong>Dysphagia (difficulty swallowing):</strong> "Sometimes food feels like it gets stuck" — if applicable</li>
+        <li><strong>Nausea:</strong> How often? Weekly? Daily?</li>
+        <li><strong>Diet restrictions:</strong> Name the specific foods you avoid — spicy, fried, coffee, alcohol, acidic</li>
+        <li><strong>Daily medication:</strong> "I take antacids almost every day just to manage it"</li>
+        <li><strong>Duration:</strong> "Since 2010 — right after I got out of the Army" — establishes the timeline</li>
+      </ul>
+      <div style="background: #1e1b4b; border-radius: 8px; padding: 12px 16px; margin-top: 12px;">
+        <p style="font-size: 0.9rem;"><strong style="color: #fbbf24;">30% requires:</strong> "Persistently recurrent epigastric distress with dysphagia, pyrosis, and regurgitation, accompanied by <strong>substernal or arm or shoulder pain</strong>, productive of considerable impairment of health." Hit as many of these terms as honestly apply to you. Daily symptoms + daily medication + sleep disruption + diet restrictions = considerable impairment.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONDITION 5: ERECTILE DYSFUNCTION ==================== -->
+<div class="condition-card">
+  <div class="condition-header" style="background: linear-gradient(90deg, #14532d 0%, #1a1a2e 100%);">
+    <div>
+      <span class="condition-name">5. Erectile Dysfunction</span>
+      <span class="nexus-tag nexus-secondary">SECONDARY TO MDD</span>
+    </div>
+    <span class="condition-code">DC 7522</span>
+  </div>
+  <div class="condition-body">
+
+    <div class="evidence-box evidence-strong">
+      <h4>Evidence Strength: STRONG</h4>
+      <div class="record-item">
+        <span>Erectile Dysfunction (ICD-9 302.72) — Philadelphia PA VAMC</span>
+        <span class="record-date">Mar 25, 2015</span>
+      </div>
+      <div class="record-item">
+        <span>MDD service-connected at 70% — ED is a known symptom of depression</span>
+        <span class="record-date">secondary nexus</span>
+      </div>
+      <div class="record-item">
+        <span>Medication history includes bupropion, doxepin, zolpidem — all can cause ED</span>
+        <span class="record-date">2017 – present</span>
+      </div>
+      <div class="record-item">
+        <span>ED on VA Problem List — continuous</span>
+        <span class="record-date">2015 – present</span>
+      </div>
+    </div>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">VA Rating Criteria — DC 7522</h4>
+    <table class="rating-table">
+      <tr>
+        <th>Rating</th>
+        <th>Criteria</th>
+      </tr>
+      <tr>
+        <td>0%</td>
+        <td>Loss of erectile power (no deformity)</td>
+      </tr>
+      <tr>
+        <td>20%</td>
+        <td>Deformity of the penis with loss of erectile power</td>
+      </tr>
+    </table>
+
+    <div style="background: #1e1b4b; border-radius: 8px; padding: 12px 16px; margin: 12px 0;">
+      <p style="font-size: 0.9rem;"><strong style="color: #fbbf24;">Key:</strong> Even at 0%, service-connected ED qualifies for <strong>Special Monthly Compensation (SMC-K)</strong> — loss of use of a creative organ. This adds <strong>~$131.44/month</strong> on top of your combined rating. Make sure your attorney is pursuing SMC-K.</p>
+    </div>
+
+    <div class="talking-points">
+      <h4>What to Tell the Examiner</h4>
+      <ul>
+        <li><strong>Loss of erectile power:</strong> Can you achieve/maintain erections? Be straightforward.</li>
+        <li><strong>Connect to MDD medications:</strong> "My ED started/worsened after I began taking medications for my service-connected depression." This is the strongest secondary connection argument.</li>
+        <li><strong>Treatments tried:</strong> Sildenafil (Viagra), tadalafil (Cialis), or any other medications or devices.</li>
+        <li><strong>Impact on quality of life and relationships.</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONDITION 6: HEADACHES ==================== -->
+<div class="condition-card">
+  <div class="condition-header" style="background: linear-gradient(90deg, #450a0a 0%, #1a1a2e 100%);">
+    <div>
+      <span class="condition-name">6. Headaches</span>
+      <span class="nexus-tag nexus-secondary">SECONDARY TO MDD</span>
+      <span class="nexus-tag nexus-presumptive">GULF WAR PRESUMPTIVE</span>
+    </div>
+    <span class="condition-code">DC 8100</span>
+  </div>
+  <div class="condition-body">
+
+    <div class="evidence-box evidence-weak">
+      <h4>Evidence Strength: WEAK — No Existing VA Documentation</h4>
+      <div class="record-item">
+        <span>No headache diagnosis on VA Problem List</span>
+        <span class="record-date">—</span>
+      </div>
+      <div class="record-item">
+        <span>No documented headache complaints in VA medical records</span>
+        <span class="record-date">—</span>
+      </div>
+      <div class="record-item">
+        <span>No TBI diagnosis on record</span>
+        <span class="record-date">—</span>
+      </div>
+    </div>
+
+    <div class="evidence-box evidence-moderate" style="margin-top: 10px;">
+      <h4>Possible Nexus Arguments</h4>
+      <div class="record-item">
+        <span><strong>Secondary to MDD (70%):</strong> Headaches are a documented symptom of depression and a side effect of psych medications (bupropion, etc.)</span>
+        <span class="record-date">moderate</span>
+      </div>
+      <div class="record-item">
+        <span><strong>Secondary to tinnitus (10%):</strong> Chronic tinnitus can cause/worsen headaches</span>
+        <span class="record-date">moderate</span>
+      </div>
+      <div class="record-item">
+        <span><strong>Gulf War presumptive (38 CFR § 3.317):</strong> Undiagnosed illnesses including chronic headaches for Gulf War veterans — no traditional nexus needed</span>
+        <span class="record-date">viable path</span>
+      </div>
+      <div class="record-item">
+        <span><strong>Direct:</strong> If headaches began during active duty or deployments (2005-2010)</span>
+        <span class="record-date">if applicable</span>
+      </div>
+    </div>
+
+    <h4 style="color: #a78bfa; margin: 14px 0 8px;">VA Rating Criteria — DC 8100 (Migraine)</h4>
+    <table class="rating-table">
+      <tr>
+        <th>Rating</th>
+        <th>Criteria</th>
+      </tr>
+      <tr>
+        <td>0%</td>
+        <td>Less frequent attacks</td>
+      </tr>
+      <tr>
+        <td>10%</td>
+        <td>Characteristic prostrating attacks averaging one in 2 months over the last several months</td>
+      </tr>
+      <tr>
+        <td>30%</td>
+        <td>Characteristic prostrating attacks occurring on average once a month over the last several months</td>
+      </tr>
+      <tr>
+        <td>50%</td>
+        <td>Very frequent completely prostrating and prolonged attacks productive of severe economic inadaptability</td>
+      </tr>
+    </table>
+
+    <div style="background: #1e1b4b; border-radius: 8px; padding: 12px 16px; margin: 12px 0;">
+      <p style="font-size: 0.9rem;"><strong style="color: #f87171;">Key term — "Prostrating":</strong> This means the headache forces you to stop what you're doing, lie down, and you cannot function. If your headaches do this, use the word <em>prostrating</em> when describing them. This is the single most important word for headache ratings.</p>
+    </div>
+
+    <div class="talking-points">
+      <h4>What to Tell the Examiner</h4>
+      <ul>
+        <li><strong>Frequency:</strong> Put a number on it — "X per week" or "X per month"</li>
+        <li><strong>Duration:</strong> How long does each attack last?</li>
+        <li><strong>Are they prostrating?</strong> Do you have to stop working, lie down, go to a dark room?</li>
+        <li><strong>Associated symptoms:</strong> Nausea, vomiting, light sensitivity, sound sensitivity, aura, visual disturbances</li>
+        <li><strong>Medications:</strong> What do you take for them?</li>
+        <li><strong>When did they start?</strong> If during service or deployments, say so. If they started/worsened with MDD or MDD meds, say that.</li>
+        <li><strong>Work impact:</strong> Do you miss work or leave early because of headaches?</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ==================== RATING ESTIMATE ==================== -->
+<div class="estimate-section">
+  <h2>Realistic Rating Estimate</h2>
+
+  <table class="rating-table">
+    <tr>
+      <th>Condition</th>
+      <th>Likely Rating</th>
+      <th>Evidence</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td>Pes Planus (Bilateral)</td>
+      <td><span class="badge badge-green">30-50%</span></td>
+      <td><span class="badge badge-green">Strong</span></td>
+      <td>Meets all 4 pronounced criteria (pronation, Achilles spasm/swelling, orthotics failed, plantar pain). 50% bilateral if examiner documents all findings. Possible separate nerve rating 10-20% for Morton's neuroma (right foot).</td>
+    </tr>
+    <tr>
+      <td>Left Knee</td>
+      <td><span class="badge badge-green">10%</span></td>
+      <td><span class="badge badge-green">Strong</span></td>
+      <td>Bilateral knee pain documented since 2010. Right knee already rated. Instability could add separate rating.</td>
+    </tr>
+    <tr>
+      <td>Stomach / GERD</td>
+      <td><span class="badge badge-green">10%</span></td>
+      <td><span class="badge badge-green">Strong</span></td>
+      <td>GERD documented 3 months after separation. 30% possible if symptoms are persistent and severe.</td>
+    </tr>
+    <tr>
+      <td>Right Ankle</td>
+      <td><span class="badge badge-yellow">10%</span></td>
+      <td><span class="badge badge-yellow">Moderate</span></td>
+      <td>No specific ankle diagnosis in records. Secondary to pes planus is the argument.</td>
+    </tr>
+    <tr>
+      <td>Erectile Dysfunction</td>
+      <td><span class="badge badge-purple">0% + SMC-K</span></td>
+      <td><span class="badge badge-green">Strong</span></td>
+      <td>Documented since 2015. Secondary to MDD/meds. SMC-K adds ~$131/mo even at 0%.</td>
+    </tr>
+    <tr>
+      <td>Headaches</td>
+      <td><span class="badge badge-red">0%</span></td>
+      <td><span class="badge badge-red">Weak</span></td>
+      <td>No VA documentation. Gulf War presumptive or secondary to MDD are the possible paths.</td>
+    </tr>
+  </table>
+
+  <div style="background: #12121f; border-radius: 8px; padding: 16px; margin-top: 16px;">
+    <h4 style="color: #a78bfa; margin-bottom: 10px;">Combined Rating Math — Conservative (30% pes planus)</h4>
+    <table class="rating-table">
+      <tr>
+        <td>Current combined rating</td>
+        <td><strong>80%</strong> → $2,044.89/mo</td>
+      </tr>
+      <tr>
+        <td>+ Pes Planus 30% (severe bilateral)</td>
+        <td>→ 86%</td>
+      </tr>
+      <tr>
+        <td>+ Right Ankle 10%</td>
+        <td>→ 87.4%</td>
+      </tr>
+      <tr>
+        <td>+ Left Knee 10%</td>
+        <td>→ 88.7%</td>
+      </tr>
+      <tr>
+        <td>+ Stomach 10%</td>
+        <td>→ 89.8%</td>
+      </tr>
+      <tr style="border-top: 2px solid #4c1d95;">
+        <td><strong>Rounds to</strong></td>
+        <td><strong style="color: #4ade80; font-size: 1.1rem;">90%</strong> → $2,241.91/mo + $131 SMC-K</td>
+      </tr>
+      <tr>
+        <td>Monthly increase</td>
+        <td style="color: #4ade80;">+$328/mo (~$3,936/yr)</td>
+      </tr>
+    </table>
+
+    <h4 style="color: #a78bfa; margin: 16px 0 10px;">Combined Rating Math — Upside (50% pes planus + nerve rating)</h4>
+    <table class="rating-table">
+      <tr>
+        <td>Current combined rating</td>
+        <td><strong>80%</strong></td>
+      </tr>
+      <tr>
+        <td>+ Pes Planus 50% (pronounced bilateral)</td>
+        <td>→ 90%</td>
+      </tr>
+      <tr>
+        <td>+ Peripheral Nerve 10% (Morton's neuroma)</td>
+        <td>→ 91%</td>
+      </tr>
+      <tr>
+        <td>+ Right Ankle 10%</td>
+        <td>→ 91.9%</td>
+      </tr>
+      <tr>
+        <td>+ Left Knee 10%</td>
+        <td>→ 92.7%</td>
+      </tr>
+      <tr>
+        <td>+ Stomach 10%</td>
+        <td>→ 93.4%</td>
+      </tr>
+      <tr style="border-top: 2px solid #4c1d95;">
+        <td><strong>Rounds to</strong></td>
+        <td><strong style="color: #fbbf24; font-size: 1.1rem;">90%</strong> → still rounds to 90%, but if ANY HLR succeeds or headaches get rated...</td>
+      </tr>
+    </table>
+    <p style="font-size: 0.85rem; color: #fbbf24; margin-top: 10px; font-weight: 600;">Path to 100%: Upside scenario (93.4%) + any one HLR win (hemorrhoids, shoulder, obesity) or headaches rated at even 10% would push past 95% → rounds to 100%. That's $3,737.85/mo — a $1,693/mo increase ($20,316/yr).</p>
+  </div>
+</div>
+
+<!-- ==================== GENERAL TIPS ==================== -->
+<div class="tips-section">
+  <h2>General Exam Tips</h2>
+  <ol>
+    <li><strong>Describe your worst days, not your best.</strong> The examiner needs to understand the full impact of each condition on your life.</li>
+    <li><strong>Don't push through pain during ROM testing.</strong> Stop at the point where pain begins. If they ask you to keep going, tell them it hurts.</li>
+    <li><strong>Quantify everything.</strong> "3-4 times per week lasting 4-6 hours" is better than "it happens a lot." Put numbers on frequency, duration, and severity.</li>
+    <li><strong>Mention flare-ups and estimate functional loss.</strong> The examiner is <em>required</em> to document this. If you're not in a flare during the exam, tell them what it's like when you are.</li>
+    <li><strong>Connect the dots to service.</strong> Anything that started during your 2006-2007 or 2009-2010 Iraq deployments — carrying gear, rucking, standing on hard surfaces, stress, environmental exposures.</li>
+    <li><strong>Mention secondary connections.</strong> ED from MDD medications. Headaches from MDD/stress. Right ankle from pes planus/altered gait. Left knee from altered gait.</li>
+    <li><strong>If the examiner doesn't ask about something, volunteer it.</strong> Especially the nerve symptoms in your right foot. If it's not in the exam notes, it didn't happen as far as the VA is concerned.</li>
+    <li><strong>Don't minimize.</strong> Veterans often understate their conditions out of habit. Be honest about how these conditions actually affect your daily life, work, and activities.</li>
+    <li><strong>This is not a treatment appointment.</strong> The examiner is evaluating, not treating. Their job is to document the severity of your conditions. Your job is to make sure nothing gets left out.</li>
+  </ol>
+</div>
+
+<!-- ==================== ACTIVE CLAIMS ==================== -->
+<div class="estimate-section" style="margin-top: 24px;">
+  <h2>All Active Claims & Appeals</h2>
+  <table class="rating-table">
+    <tr>
+      <th>Claim</th>
+      <th>Filed</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>Disability Compensation — 6 new conditions</td>
+      <td>Feb 10, 2026</td>
+      <td><span class="badge badge-yellow">Step 3/8 — Evidence Gathering</span></td>
+    </tr>
+    <tr>
+      <td>HLR — Hemorrhoids</td>
+      <td>Mar 5, 2026</td>
+      <td><span class="badge badge-purple">Received</span></td>
+    </tr>
+    <tr>
+      <td>HLR — Right Shoulder + 1 other</td>
+      <td>Feb 6, 2026</td>
+      <td><span class="badge badge-purple">Received</span></td>
+    </tr>
+    <tr>
+      <td>HLR — Obesity secondary to MDD</td>
+      <td>Jan 14, 2026</td>
+      <td><span class="badge badge-purple">Received</span></td>
+    </tr>
+  </table>
+  <p style="font-size: 0.85rem; color: #a0a0a0; margin-top: 10px;">POA Attorney: James S. Trieschmann — 100 S. Ashley Drive Suite 600, Tampa, FL 33602</p>
+</div>
+
+<p class="print-note">Prepared 3/29/2026 — Review before your 3:00 PM appointment. Arrive by 2:45 PM.<br>Royal Suntomed Medical Group — 7434 Louis Pasteur Dr, Ste 309, San Antonio, TX 78229</p>
+
+</body>
+</html>
