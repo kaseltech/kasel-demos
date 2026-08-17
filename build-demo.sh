@@ -22,8 +22,8 @@ DEMO_NAME="$2"
 DEPLOY_FLAG="$3"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-COOLIFY_API="http://178.156.247.227:8000/api/v1"
-COOLIFY_TOKEN="2|HR9QiNo0u7DmFBFSKZOWcl6PLIS8i64u17MzsygHd363f540"
+COOLIFY_API="${COOLIFY_API:-http://100.114.50.52:8000/api/v1}"
+COOLIFY_TOKEN="${COOLIFY_TOKEN:-}"
 COOLIFY_APP_UUID="lcgssowgkc444w4k004o0cck"
 
 # --- Validate args ---
@@ -75,6 +75,11 @@ echo "Done. Demo files at: $SCRIPT_DIR/sites/$DEMO_NAME"
 
 # --- Step 3: Deploy (optional) ---
 if [ "$DEPLOY_FLAG" = "--deploy" ]; then
+  if [ -z "$COOLIFY_TOKEN" ]; then
+    echo "ERROR: Set COOLIFY_TOKEN from the KaselTech credential vault before deploying."
+    exit 1
+  fi
+
   echo ""
   echo "=== Deploying to demo.kasel.tech ==="
 
